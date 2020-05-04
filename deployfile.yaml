@@ -1,0 +1,18 @@
+schemaVersion: 0.0.1
+metadata:
+  name: golang-serverless
+
+images:
+  - name: golang-app
+    strategy:
+      name: Kaniko
+    Dockerfile: Dockerfile
+
+workloads:
+  components:
+    - description: Golang App built from source deployed as a 'function'.
+      imageRef: golang-app
+      type:
+        apiVersion: serving.knative.dev/v1
+        Kind: Service
+      

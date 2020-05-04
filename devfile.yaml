@@ -24,18 +24,3 @@ commands:
       commandLine: CGO_ENABLED=0 GOOS=linux go build -mod=readonly -v -o server
       workingDir: '${PROJECTS_ROOT}/go-function'
 
-images:
-  - name: golang-app
-    strategy:
-      name: Kaniko
-    Dockerfile: Dockerfile
-
-workloads:
-  components:
-    - description: Golang App built from source deployed as a 'function'.
-      imageRef: golang-app
-      type:
-        apiVersion: serving.knative.dev/v1
-        Kind: Service
-      
-      
